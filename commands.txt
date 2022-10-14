@@ -1,0 +1,52 @@
+sudo docker network create mudit-net
+sudo docker run -h ubuntu-1 -ti --rm --net mudit-net -v /var/www/html:/www --name ubuntu-1 ubuntu bash
+
+IN CONTAINER-ubuntu-1
+	apt-get update
+	apt-get install net-tools
+	ifconfig
+	apt install iputils-ping
+	hostname
+	ifconfig -a
+	ping -c 1 172.20.0.3
+	ls /www
+
+
+sudo docker run -h ubuntu-2 -ti --rm --net mudit-net --volumes-from ubuntu-1 --name ubuntu-2 ubuntu bash
+
+IN CONTAINER-ubuntu-2
+	apt-get update
+	apt-get install net-tools
+	ifconfig
+	apt install iputils-ping
+	hostname
+	ifconfig -a
+	ping -c 1 172.20.0.2
+	ls /www
+
+
+sudo docker network create mudit-net2
+sudo docker run  -h ubuntu-3 -ti --rm --net mudit-net2 --name ubuntu-3 ubuntu bash	
+IN CONTAINER-ubuntu-3
+	apt-get update
+	apt-get install net-tools
+	ifconfig
+	apt install iputils-ping
+	hostname
+	ifconfig -a
+	ping -c 1 172.18.0.3
+	ls /www
+
+sudo docker run -h ubuntu-4 -ti --rm --net mudit-net2 --name ubuntu-4 ubuntu bash
+IN CONTAINER-ubuntu-4
+	apt-get update
+	apt-get install net-tools
+	ifconfig
+	apt install iputils-ping
+	hostname
+	ifconfig -a
+	ping -c 1 172.18.0.2
+	ls /www
+
+
+	
