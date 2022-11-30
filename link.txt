@@ -1,0 +1,3 @@
+https://github.com/sidpalas/devops-directive-terraform-course/tree/main/05-language-features
+https://github.com/cloudnloud/Ansible_Automation
+https://youtu.be/f4idgaq2VqA
